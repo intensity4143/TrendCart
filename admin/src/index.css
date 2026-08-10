@@ -1,18 +1,89 @@
 @import url('https://fonts.googleapis.com/css2?family=Outfit:wght@100..900&family=Prata&display=swap');
 @import "tailwindcss";
 
-*{
-    font-family: "Outfit", sans-serif;
+* {
+  font-family: "Outfit", sans-serif;
 }
 
-select,input,textarea{
-    border: 1px solid #c2c2c2;
-    outline-color: #c586a5;
-    border-radius: 4px;
+/* ── Form element base ── */
+select, input, textarea {
+  border: 1px solid #C4BAB0;
+  outline-color: #2C2825;
+  border-radius: 4px;
+  background-color: #FDFAF4;
 }
 
-.active{
-    background-color: #ffebf5;
-    border-color: #c586a5;
+/* ── Active sidebar item ── */
+.active {
+  background-color: #EDE8DC;
+  border-color: #2C2825;
 }
 
+/* ================================================================
+   CREAM COLOR THEME — ADMIN
+   ================================================================ */
+
+body {
+  background-color: #F8F7F4;
+}
+
+.bg-white {
+  background-color: #FFFFFF !important;
+}
+
+.bg-gray-50 {
+  background-color: #F0EDE6 !important;
+}
+
+.bg-gray-100 {
+  background-color: #F0EDE6 !important;
+}
+
+.text-gray-700 {
+  color: #2C2825 !important;
+}
+
+.text-gray-600 {
+  color: #5C5248 !important;
+}
+
+.text-gray-500 {
+  color: #7A6F65 !important;
+}
+
+.text-gray-400 {
+  color: #A89F95 !important;
+}
+
+.border-gray-300,
+.border-gray-200 {
+  border-color: #DDD6C8 !important;
+}
+
+.border-gray-400 {
+  border-color: #C4BAB0 !important;
+}
+
+hr {
+  border-color: #DDD6C8;
+}
+
+.bg-black {
+  background-color: #2C2825 !important;
+}
+
+.text-black {
+  color: #2C2825 !important;
+}
+
+.hover\:text-gray-200:hover {
+  color: #EDE8DC !important;
+}
+
+.bg-blue-600 {
+  background-color: #2C2825 !important;
+}
+
+.bg-slate-200 {
+  background-color: #F0EDE6 !important;
+}

@@ -1,12 +1,15 @@
 @import url('https://fonts.googleapis.com/css2?family=Outfit:wght@100..900&family=Prata&display=swap');
 
 @import "tailwindcss";
-a.active hr{
-    display: block;
+
+/* ── Active nav underline ── */
+a.active hr {
+  display: block;
 }
 
-*{
-    font-family: outfit;
+/* ── Base font (unchanged) ── */
+* {
+  font-family: outfit;
 }
 
 .prata-regular {
@@ -15,13 +18,172 @@ a.active hr{
   font-style: normal;
 }
 
-::-webkit-scrollbar{
-    display: none;
+/* ── Hide scrollbar ── */
+::-webkit-scrollbar {
+  display: none;
 }
 
-@media (max-width:640px) {
-    a.active{
-        background-color: black;
-        color: white;
-    }
+/* ── Mobile active nav ── */
+@media (max-width: 640px) {
+  a.active {
+    background-color: black;
+    color: white;
+  }
 }
+
+/* ================================================================
+   CREAM COLOR THEME
+   All overrides below. No component files are changed.
+   ================================================================ */
+
+/* Page background — replaces the default white body */
+body {
+  background-color: #F8F7F4;
+}
+
+/* The root app wrapper uses px padding only, so background flows from body */
+#root > div {
+  background-color: #F8F7F4;
+}
+
+/* ── White surfaces → off-white cream ── */
+/* bg-white */
+.bg-white {
+  background-color: #FFFFFF !important;
+}
+
+/* ── Slate/gray light backgrounds → warm beige tints ── */
+/* bg-slate-100, bg-gray-50, bg-gray-100 */
+.bg-slate-100,
+.bg-gray-50,
+.bg-gray-100 {
+  background-color: #F0EDE6 !important;
+}
+
+/* ── Text colors ── */
+/* text-gray-700 → deep charcoal */
+.text-gray-700 {
+  color: #2C2825 !important;
+}
+
+/* text-gray-600 → muted warm brown */
+.text-gray-600 {
+  color: #5C5248 !important;
+}
+
+/* text-gray-500 → lighter warm brown */
+.text-gray-500 {
+  color: #7A6F65 !important;
+}
+
+/* text-gray-400 → muted */
+.text-gray-400 {
+  color: #A89F95 !important;
+}
+
+/* text-gray-800 → near-black charcoal */
+.text-gray-800 {
+  color: #1E1A17 !important;
+}
+
+/* ── Border colors ── */
+/* border-gray-300, border-gray-200, border-slate-200 → warm beige */
+.border-gray-300,
+.border-gray-200,
+.border-slate-200 {
+  border-color: #DDD6C8 !important;
+}
+
+/* border-gray-400 → slightly darker beige */
+.border-gray-400 {
+  border-color: #C4BAB0 !important;
+}
+
+/* plain hr */
+hr {
+  border-color: #DDD6C8;
+}
+
+/* ── Primary action color: bg-black → warm deep charcoal ── */
+/* Buttons, cart badge, active states */
+.bg-black {
+  background-color: #2C2825 !important;
+}
+
+.text-black {
+  color: #2C2825 !important;
+}
+
+.border-black {
+  border-color: #2C2825 !important;
+}
+
+/* hover:bg-black */
+.hover\:bg-black:hover {
+  background-color: #2C2825 !important;
+}
+
+/* hover:text-black */
+.hover\:text-black:hover {
+  color: #2C2825 !important;
+}
+
+/* active:bg-gray-700 */
+.active\:bg-gray-700:active {
+  background-color: #3D3530 !important;
+}
+
+/* bg-gray-700 */
+.bg-gray-700 {
+  background-color: #3D3530 !important;
+}
+
+/* ── Focus border ── */
+.focus\:border-gray-800:focus {
+  border-color: #2C2825 !important;
+}
+
+/* ── Inputs: keep border consistent ── */
+input, textarea, select {
+  background-color: #FDFAF4;
+  border-color: #C4BAB0;
+}
+
+input:focus, textarea:focus, select:focus {
+  border-color: #2C2825;
+  outline: none;
+}
+
+input::placeholder, textarea::placeholder {
+  color: #A89F95;
+}
+
+/* ── Dropdown menu in Navbar ── */
+.dropdown-menu > div {
+  background-color: #F0EDE6 !important;
+}
+
+/* ── Mobile sidebar bg-white override ── */
+/* The sidebar uses inline bg-white class */
+.fixed.bg-white {
+  background-color: #FFFFFF !important;
+}
+
+/* ── Search bar bg-gray-50 ── */
+.bg-gray-50 {
+  background-color: #F0EDE6 !important;
+}
+
+/* ── Size selector active: bg-blue-700 → warm charcoal ── */
+.bg-blue-700 {
+  background-color: #2C2825 !important;
+}
+
+/* ── Admin: size selector active in Add page ── */
+.bg-blue-600 {
+  background-color: #2C2825 !important;
+}
+
+/* ── Green payment radio dot — keep as-is (functional indicator) ── */
+
+/* ── Toastify: keep default ── */
