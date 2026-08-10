@@ -7,7 +7,6 @@ const Navbar = () => {
   const [visible, setVisible] = useState(false);
   const [dropdownOpen, setDropdownOpen] = useState(false);
   const {
-    setShowSearch,
     getCartCount,
     navigate,
     token,
@@ -48,13 +47,6 @@ const Navbar = () => {
       </ul>
 
       <div className="flex items-center gap-6">
-        <img
-          src={assets.search_icon}
-          className="w-5 cursor-pointer"
-          alt=""
-          onClick={() => setShowSearch(true)}
-        />
-
         {/* ------ DropDown Menu ------ */}
         <div className="relative">
           <img

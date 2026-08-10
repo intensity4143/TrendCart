@@ -1,11 +1,13 @@
 import { useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
 import { backendUrl, currency } from "../App";
 import axios from "axios";
 import { toast } from "react-toastify";
-import { Trash2 } from "lucide-react";
+import { Trash2, Pencil } from "lucide-react";
 
 const List = ({ token }) => {
   const [list, setList] = useState([]);
+  const navigate = useNavigate();
 
   const fetchList = async () => {
     try {
@@ -74,7 +76,12 @@ const List = ({ token }) => {
               {currency}
               {item.price}
             </p>
-            <div className="justify-self-center">
+            <div className="justify-self-center flex gap-3">
+              <Pencil
+                onClick={() => navigate(`/edit/${item._id}`)}
+                className="hover:text-blue-600 cursor-pointer"
+                size={18}
+              />
               <Trash2
                 onClick={() => removeProduct(item._id)}
                 className="hover:text-red-700 cursor-pointer"

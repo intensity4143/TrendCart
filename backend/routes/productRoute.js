@@ -5,7 +5,8 @@ const {
   addProduct,
   listProducts,
   removeProduct,
-  singleProduct
+  singleProduct,
+  updateProduct
 } = require('../controllers/productController');
 
 const upload = require('../middleware/multer');
@@ -29,6 +30,19 @@ productRouter.get('/list', listProducts);
 
 // get single product
 productRouter.get('/single/:id', singleProduct);
+
+// update product
+productRouter.put(
+  '/update/:id',
+  adminAuth,
+  upload.fields([
+    { name: 'image1', maxCount: 1 },
+    { name: 'image2', maxCount: 1 },
+    { name: 'image3', maxCount: 1 },
+    { name: 'image4', maxCount: 1 }
+  ]),
+  updateProduct
+);
 
 // delete product
 productRouter.delete('/remove/:id', adminAuth, removeProduct);

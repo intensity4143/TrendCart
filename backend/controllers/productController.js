@@ -10,6 +10,7 @@ const addProduct = async (req, res) => {
     const {
       name,
       description,
+      detailedDescription,
       price,
       category,
       subCategory,
@@ -45,6 +46,7 @@ const addProduct = async (req, res) => {
     const product = await Product.create({
       name,
       description,
+      detailedDescription: detailedDescription || '',
       category,
       price: Number(price),
       subCategory,
@@ -192,9 +194,54 @@ const singleProduct = async (req, res) => {
     }
 };
 
+// controller for updating product
+const updateProduct = async (req, res) => {
+  try {
+    const { id } = req.params;
+    const { name, description, detailedDescription, price, category, subCategory, sizes, bestseller } = req.body;
+
+    const updateData = {
+      name,
+      description,
+      detailedDescription: detailedDescription || '',
+      price: Number(price),
+      category,
+      subCategory,
+      bestseller: bestseller === 'true',
+      sizes: JSON.parse(sizes),
+    };
+
+    const newImages = ['image1','image2','image3','image4']
+      .map(f => req.files?.[f]?.[0] || null)
+      .filter(Boolean);
+
+    if (newImages.length > 0) {
+      updateData.image = await Promise.all(
+        newImages.map(async (item) => {
+          const result = await cloudinary.uploader.upload(item.path, { resource_type: 'image', folder: 'TrendCart' });
+          fs.unlinkSync(item.path);
+          return result.secure_url;
+        })
+      );
+    }
+
+    const updated = await Product.findByIdAndUpdate(id, updateData, { new: true });
+    if (!updated) return res.status(404).json({ success: false, message: 'Product not found' });
+
+    await redis.del(`products:${id}`);
+    await redis.del('products:all');
+
+    res.json({ success: true, message: 'Product updated' });
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ success: false, message: error.message });
+  }
+};
+
 module.exports = {
   addProduct,
   listProducts,
   removeProduct,
   singleProduct,
+  updateProduct,
 };

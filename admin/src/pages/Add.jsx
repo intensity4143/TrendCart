@@ -12,6 +12,7 @@ const Add = ({token}) => {
 
   const [name, setName] = useState("");
   const [description, setDescription] = useState("");
+  const [detailedDescription, setDetailedDescription] = useState("");
   const [price, setPrice] = useState("")
   const [category, setCategory] = useState("Men");
   const [subCategory, setSubCategory] = useState("Topwear")
@@ -29,6 +30,7 @@ const Add = ({token}) => {
 
         formData.append("name", name)
         formData.append("description", description)
+        formData.append("detailedDescription", detailedDescription)
         formData.append("price", price)
         formData.append("category", category)
         formData.append("subCategory", subCategory)
@@ -49,6 +51,7 @@ const Add = ({token}) => {
           toast.success(response.data.message)
           setName('')
           setDescription('')
+          setDetailedDescription('')
           setImage1(false)
           setImage2(false)
           setImage3(false)
@@ -142,11 +145,23 @@ const Add = ({token}) => {
 
         {/* product description */}
         <div className='w-full'>
-          <p className='mb-2'>Product Description</p>
+          <p className='mb-2'>Product Description <span className='text-gray-400 text-xs'>(short — shown under product title)</span></p>
           <textarea
             value={description}
             onChange={(e)=>setDescription(e.target.value)}
             className='w-full max-w-[500px] px-3 py-2' type="text" placeholder='Write Description here' required/>
+        </div>
+
+        {/* detailed description */}
+        <div className='w-full'>
+          <p className='mb-2'>Detailed Description <span className='text-gray-400 text-xs'>(shown in Description tab on product page)</span></p>
+          <textarea
+            value={detailedDescription}
+            onChange={(e)=>setDetailedDescription(e.target.value)}
+            className='w-full max-w-[500px] px-3 py-2'
+            placeholder='Write detailed product description — material, fit, care instructions, etc.'
+            rows={6}
+          />
         </div>
 
         <div className='flex flex-col sm:flex-row gap-2 w-full sm:gap-8'>

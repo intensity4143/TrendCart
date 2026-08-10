@@ -4,38 +4,30 @@ import { assets } from "../assets/frontend_assets/assets";
 import { useLocation } from "react-router-dom";
 
 const SearchBar = () => {
-  const { search, setSearch, showSearch, setShowSearch } =
-    useContext(ShopContext);
-    const [visible, setVisible] = useState(false);
-    const location = useLocation();
+  const { search, setSearch } = useContext(ShopContext);
+  const [visible, setVisible] = useState(false);
+  const location = useLocation();
 
-    useEffect(()=>{
-        if(location.pathname.includes('collection')){
-            setVisible(true);
-        }
-        else{
-            setVisible(false);
-        }
-    }, [location])
+  useEffect(() => {
+    setVisible(location.pathname.includes('collection'));
+  }, [location]);
 
-  return showSearch && visible ? (
-    <div className="border-t bg-gray-50 text-center">
-      <div className="inline-flex items-center justify-center border border-gray-400 px-5 py-2 my-5 mx-3 rounded-full w-3/4 sm:w-1/2">
+  return visible ? (
+    <div className="border-t border-[#DDD6C8] py-4 px-4 sm:px-0">
+      <div style={{backgroundColor:'#ffffff'}} className="max-w-xl mx-auto flex items-center gap-3 border border-[#DDD6C8] rounded-lg px-4 py-2.5 shadow-sm focus-within:border-[#2C2825] transition-colors">
+        <img className="w-4 opacity-40 shrink-0" src={assets.search_icon} alt="" />
         <input
           value={search}
-          className="flex-1 outline-none bg-inherit text-sm"
+          style={{backgroundColor:'#ffffff'}}
+          className="flex-1 outline-none text-sm text-[#2C2825] placeholder-[#A89F95]"
           type="text"
-          placeholder="Search"
+          placeholder="Search products..."
           onChange={(e) => setSearch(e.target.value)}
         />
-        <img className="w-4" src={assets.search_icon} alt="" />
+        {search && (
+          <button onClick={() => setSearch('')} className="text-[#A89F95] hover:text-[#2C2825] transition-colors text-lg leading-none">&times;</button>
+        )}
       </div>
-      <img
-        className="inline w-3 cursor-pointer"
-        src={assets.cross_icon}
-        alt=""
-        onClick={() => setShowSearch(false)}
-      />
     </div>
   ) : null;
 };
