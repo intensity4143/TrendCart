@@ -7,7 +7,7 @@ const About = () => {
   return (
     <div className='animate-in fade-in duration-700'>
       
-      <div className='text-2xl text-center pt-10 border-t'>
+      <div className='text-2xl text-center pt-10'>
         <Title text1={'ABOUT'} text2={'TRENDCART'} />
       </div>
 

@@ -23,7 +23,7 @@ const OrderSuccess = () => {
   }, []);
 
   return (
-    <div className="min-h-[80vh] border-t flex items-center justify-center px-4">
+    <div className="min-h-[80vh] flex items-center justify-center px-4">
       <div
         className="flex flex-col items-center text-center max-w-md w-full animate-fade-in"
         style={{ animation: 'fadeScaleIn 0.4s ease both' }}

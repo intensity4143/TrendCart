@@ -37,14 +37,14 @@ const Orders = () => {
 
   if (loading) {
     return (
-      <div className="border-t pt-16 min-h-[50vh] flex items-center justify-center">
+      <div className="pt-16 min-h-[50vh] flex items-center justify-center">
         <p className="text-gray-400 text-sm">Loading orders...</p>
       </div>
     );
   }
 
   return (
-    <div className="border-t pt-16 pb-20">
+    <div className="pt-16 pb-20">
       <div className="text-2xl mb-6">
         <Title text1="MY" text2="ORDERS" />
       </div>

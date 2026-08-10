@@ -253,10 +253,10 @@ const Profile = () => {
     navigate('/login');
   };
 
-  if (!userProfile) return <div className="border-t pt-16 min-h-[60vh] flex items-center justify-center text-gray-400">Loading...</div>;
+  if (!userProfile) return <div className="pt-16 min-h-[60vh] flex items-center justify-center text-gray-400">Loading...</div>;
 
   return (
-    <div className="border-t pt-14 pb-20">
+    <div className="pt-14 pb-20">
       <div className="text-2xl mb-8">
         <Title text1="MY" text2="PROFILE" />
       </div>

@@ -8,7 +8,7 @@ const Contact = () => {
     <div className='animate-in fade-in duration-700'>
 
       {/* Header Section */}
-      <div className='text-center text-2xl pt-10 border-t'>
+      <div className='text-center text-2xl pt-10'>
         <Title text1={'CONTACT'} text2={'US'} />
       </div>
 

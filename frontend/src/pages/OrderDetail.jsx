@@ -99,7 +99,7 @@ const OrderDetail = () => {
 
   if (loading) {
     return (
-      <div className="border-t pt-16 min-h-[60vh] flex items-center justify-center">
+      <div className="pt-16 min-h-[60vh] flex items-center justify-center">
         <p className="text-gray-400 text-sm">Loading order details...</p>
       </div>
     );
@@ -107,7 +107,7 @@ const OrderDetail = () => {
 
   if (notFound || !order) {
     return (
-      <div className="border-t pt-16 min-h-[60vh] flex flex-col items-center justify-center gap-4">
+      <div className="pt-16 min-h-[60vh] flex flex-col items-center justify-center gap-4">
         <p className="text-gray-500 text-sm">Order not found or you don't have access to this order.</p>
         <button onClick={() => navigate('/orders')} className="bg-black text-white px-6 py-2 text-sm hover:bg-gray-800">
           Back to Orders
@@ -123,7 +123,7 @@ const OrderDetail = () => {
   const tax = order.tax || 0;
 
   return (
-    <div className="border-t pt-14 pb-20">
+    <div className="pt-14 pb-20">
       {/* page header */}
       <div className="flex items-center gap-4 mb-8">
         <button

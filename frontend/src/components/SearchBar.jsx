@@ -13,7 +13,7 @@ const SearchBar = () => {
   }, [location]);
 
   return visible ? (
-    <div className="border-t border-[#DDD6C8] py-4 px-4 sm:px-0">
+    <div className="py-4 px-4 sm:px-0">
       <div style={{backgroundColor:'#ffffff'}} className="max-w-xl mx-auto flex items-center gap-3 border border-[#DDD6C8] rounded-lg px-4 py-2.5 shadow-sm focus-within:border-[#2C2825] transition-colors">
         <img className="w-4 opacity-40 shrink-0" src={assets.search_icon} alt="" />
         <input
