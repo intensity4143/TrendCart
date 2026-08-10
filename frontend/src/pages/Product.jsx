@@ -4,25 +4,31 @@ import { ShopContext } from "../context/ShopContext";
 import { assets } from "../assets/frontend_assets/assets";
 import RelatedProducts from "../components/RelatedProducts";
 import { toast } from "react-toastify";
+import axios from "axios";
 
 const Product = () => {
   const { productId } = useParams();
-  const { products, currency, addToCart, token, navigate, setBuyNowItem } = useContext(ShopContext);
+  const { currency, addToCart, token, navigate, setBuyNowItem, backendUrl } = useContext(ShopContext);
   const [productData, setProductData] = useState(false);
   const [image, setImage] = useState("");
   const [size, setSize] = useState("");
 
-  const fetChProductData = () => {
-    const foundProduct = products.find((item) => item._id === productId);
-    if (foundProduct) {
-      setProductData(foundProduct);
-      setImage(foundProduct.image[0]);
-    }
-  };
-
   useEffect(() => {
-    fetChProductData();
-  }, [productId, products]);
+    const fetchProductData = async () => {
+      try {
+        const { data } = await axios.get(`${backendUrl}/api/product/single/${productId}`);
+        if (data.success) {
+          setProductData(data.product);
+          setImage(data.product.image[0]);
+        } else {
+          toast.error(data.message);
+        }
+      } catch (error) {
+        toast.error(error.message);
+      }
+    };
+    fetchProductData();
+  }, [productId]);
 
   return productData ? (
     <div className="border-t pt-10 transition-opacity ease-in duration-500 opacity-100">
