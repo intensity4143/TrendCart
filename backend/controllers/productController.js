@@ -1,6 +1,8 @@
 const Product = require("../models/ProductModel");
 const cloudinary = require("cloudinary").v2;
 const fs = require("fs");
+const redis = require("../config/redis");
+const { stringify } = require("querystring");
 
 // controller for adding product
 const addProduct = async (req, res) => {
@@ -52,7 +54,8 @@ const addProduct = async (req, res) => {
       date: Date.now(),
     });
 
-    // console.log(product)
+    // invalidating cache
+    await redis.del("products:all");
 
     res.status(201).json({
       success: true,
@@ -70,83 +73,123 @@ const addProduct = async (req, res) => {
 
 // controller for listing product
 const listProducts = async (req, res) => {
-  try {
-    const products = await Product.find({});
-    res.json({
-      success: true,
-      products,
-    });
-  } 
-  catch (error) {
-    console.error(error);
-    res.status(500).json({
-      success: false,
-      message: error.message,
-    });
-  }
+    try {
+        const cachedProducts = await redis.get("products:all");
+
+        // Cache HIT
+        if (cachedProducts) {
+            return res.json({
+                success: true,
+                products: JSON.parse(cachedProducts)
+            });
+        }
+
+        // Cache MISS
+        const products = await Product.find({});
+
+        await redis.set(
+            "products:all",
+            JSON.stringify(products),
+            "EX",
+            600
+        );
+
+        return res.json({
+            success: true,
+            products,
+        });
+
+    } catch (error) {
+        console.error(error);
+
+        return res.status(500).json({
+            success: false,
+            message: error.message,
+        });
+    }
 };
 
 // controller for removing product
 const removeProduct = async (req, res) => {
-  try {
+    try {
+        const { id } = req.params;
 
-    // extract id passed in url parameter
-    const { id } = req.params;
+        const deletedProduct = await Product.findByIdAndDelete(id);
 
-    const deletedProduct = await Product.findByIdAndDelete(id);
+        if (!deletedProduct) {
+            return res.status(404).json({
+                success: false,
+                message: "Product not found",
+            });
+        }
 
-    if (!deletedProduct) {
-      return res.status(404).json({
-        success: false,
-        message: "Product not found",
-      });
+        // Invalidate Redis cache
+        const cacheKey = `products:${id}`;
+
+        await redis.del(cacheKey);
+        await redis.del("products:all");
+
+        return res.status(200).json({
+            success: true,
+            message: "Product removed",
+        });
+
+    } catch (error) {
+        console.error(error);
+
+        return res.status(500).json({
+            success: false,
+            message: error.message,
+        });
     }
-
-    res.status(200).json({
-      success: true,
-      message: "Product removed",
-    });
-
-  } 
-  catch (error) {
-
-    console.error(error);
-    res.status(500).json({
-      success: false,
-      message: error.message,
-    });
-    
-  }
 };
 
 // controller for single product info
 const singleProduct = async (req, res) => {
-  try {
-    const {id} = req.params
-    
-    const product = await Product.findById(id);
-    
-    if(!product){
-      return res.status(404).json({
-        success:false,
-        message:"Product not found!"
-      })
-    }
-    
-    return res.status(200).json({
-      success:true,
-      product
-    })
+    try {
+        const { id } = req.params;
 
-  } 
-  catch (error) {
-    console.error(error);
-    res.status(500).json({
-      success: false,
-      message: error.message,
-    });
-    
-  }
+        const cacheKey = `products:${id}`;
+        const cachedProduct = await redis.get(cacheKey);
+
+        // Cache HIT
+        if (cachedProduct) {
+            return res.status(200).json({
+                success: true,
+                product: JSON.parse(cachedProduct)
+            });
+        }
+
+        // Cache MISS
+        const product = await Product.findById(id);
+
+        if (!product) {
+            return res.status(404).json({
+                success: false,
+                message: "Product not found!"
+            });
+        }
+
+        await redis.set(
+            cacheKey,
+            JSON.stringify(product),
+            "EX",
+            1200
+        );
+
+        return res.status(200).json({
+            success: true,
+            product
+        });
+
+    } catch (error) {
+        console.error(error);
+
+        return res.status(500).json({
+            success: false,
+            message: error.message,
+        });
+    }
 };
 
 module.exports = {
