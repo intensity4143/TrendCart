@@ -93,7 +93,7 @@ const listProducts = async (req, res) => {
             "products:all",
             JSON.stringify(products),
             "EX",
-            600
+            3600
         );
 
         return res.json({
