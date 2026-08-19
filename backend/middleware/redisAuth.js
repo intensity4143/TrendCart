@@ -4,7 +4,7 @@ const rateLimiter = (limit, window) => {
     return async (req, res, next) => {
         try {
             const ip = req.ip;
-            const key = `user:${ip}`;
+            const key = `user:${ip}:${req.baseUrl}:${req.path}`;
 
             const count = await redis.incr(key);
 
