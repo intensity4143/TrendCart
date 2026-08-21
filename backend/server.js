@@ -27,6 +27,9 @@ app.use('/api/cart', cartRouter)
 app.use('/api/order', orderRouter)
 app.use("/api/slides", heroSlideRoute);
 
+// Health check
+app.get('/api/health', (_, res) => res.json({ ok: true }));
+
 
 // default route
 app.get('/', (req, res)=>{
