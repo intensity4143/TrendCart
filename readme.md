@@ -243,23 +243,24 @@ TrendCart dynamically generates PDF invoices containing:
 
 ```text
 TrendCart/
+├── admin/
+│   ├── public/
+│   └── src/
 │
 ├── backend/
+│   ├── config/
 │   ├── controllers/
 │   ├── middleware/
 │   ├── models/
-│   ├── routes/
-│   ├── services/
-│   ├── config/
-│   └── server.js
+│   └── routes/
 │
 ├── frontend/
-│   ├── components/
-│   ├── pages/
-│   ├── redux/
-│   ├── context/
-│   └── ...
+│   ├── public/
+│   └── src/
 │
+├── screenshots/
+│
+├── .gitignore
 └── README.md
 ```
 
@@ -310,7 +311,7 @@ Sensitive credentials and API keys should never be committed to the repository.
 ### Clone the repository
 
 ```bash
-git clone <repository-url>
+git clone https://github.com/intensity4143/TrendCart.git
 cd TrendCart
 ```
 
@@ -352,6 +353,7 @@ npm start
 ```
 
 ### Frontend
+Open another Terminal
 
 ```bash
 cd frontend
@@ -363,6 +365,21 @@ The frontend will normally be available at:
 
 ```text
 http://localhost:5173
+```
+
+### Admin
+Open another Terminal
+
+```bash
+cd admin
+npm install
+npm run dev
+```
+
+The frontend will normally be available at:
+
+```text
+http://localhost:5174
 ```
 
 ## Project Highlights
