@@ -50,7 +50,7 @@ The platform supports customer and admin roles, product browsing and management,
 ### Cart & Checkout
 
 <p align="center">
-  <img src="./screenshots/Checkout.png.png" alt="TrendCart Cart and Checkout" width="900">
+  <img src="./screenshots/Checkout.png" alt="TrendCart Cart and Checkout" width="900">
 </p>
 
 ### Admin Dashboard
