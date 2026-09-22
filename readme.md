@@ -44,13 +44,13 @@ The platform supports customer and admin roles, product browsing and management,
 ### Product Details
 
 <p align="center">
-  <img src="./screenshots/product-details.png" alt="TrendCart Product Details" width="900">
+  <img src="./screenshots/Product-details.png" alt="TrendCart Product Details" width="900">
 </p>
 
 ### Cart & Checkout
 
 <p align="center">
-  <img src="./screenshots/cart.png" alt="TrendCart Cart and Checkout" width="900">
+  <img src="./screenshots/Checkout.png.png" alt="TrendCart Cart and Checkout" width="900">
 </p>
 
 ### Admin Dashboard
