@@ -325,15 +325,24 @@ Create a `.env` file:
 
 ```env
 PORT=5000
-MONGO_URI=<your-mongodb-uri>
-JWT_SECRET=<your-jwt-secret>
-REDIS_URL=<your-redis-url>
 
-STRIPE_SECRET_KEY=<your-stripe-secret>
-STRIPE_WEBHOOK_SECRET=<your-stripe-webhook-secret>
+DATABASE_URL=<your-database-url>
+
+CLOUDINARY_API_KEY=<your-cloudinary-api-key>
+CLOUDINARY_API_SECRET=<your-cloudinary-api-secret>
+CLOUDINARY_CLOUD_NAME=<your-cloudinary-cloud-name>
+
+JWT_SECRET=<your-jwt-secret>
+
+ADMIN_EMAIL=<your-admin-email>
+ADMIN_PASSWORD=<your-admin-password>
+
+STRIPE_SECRET_KEY=<your-stripe-secret-key>
 
 RAZORPAY_KEY_ID=<your-razorpay-key-id>
-RAZORPAY_KEY_SECRET=<your-razorpay-key-secret>
+RAZORPAY_SECRET_KEY=<your-razorpay-secret-key>
+
+REDIS_URL=<your-upstash-tcp-url>
 ```
 
 Start the backend:
