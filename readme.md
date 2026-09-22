@@ -367,7 +367,7 @@ The frontend will normally be available at:
 http://localhost:5173
 ```
 
-### Admin
+### Admin Panel
 Open another Terminal
 
 ```bash
@@ -376,7 +376,7 @@ npm install
 npm run dev
 ```
 
-The frontend will normally be available at:
+The Admin Panel will normally be available at:
 
 ```text
 http://localhost:5174
